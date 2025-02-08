@@ -74,7 +74,7 @@ function setup() {
   drawGradientMoon();
   drawFrame();
   
-  // 240초마다 자동 갱신
+  // 초마다 자동 갱신
   setInterval(refreshSketch, 60000);  // 240000
 }
 //================================================
@@ -118,8 +118,8 @@ function drawGradientBackground() {
   // 청, 남색 계열 - 단색 
   // topColor1 = color(0,random(15,125),255); // Start gradient for top 200 255
   // topColor2 = color(0,0,255); // topColor1
-  bottomColor1 = color(random(255, 255)); // Start gradient for bottom
-  bottomColor2 = color(random(160, 170)); // End gradient for bottom (160, 170)
+  bottomColor1 = color(255); // Start gradient for bottom
+  bottomColor2 = color(random(200, 220)); // End gradient for bottom (160, 170)
 
   let margin = height/3;
   let controlX1 = width / 1.6;
