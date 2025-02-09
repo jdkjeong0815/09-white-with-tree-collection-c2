@@ -97,6 +97,8 @@ function draw() {
 
 function initializeRandomElements() {
   canvas = createCanvas(minCanvas, minCanvas);
+  // 캔버스의 좌측 상단 기준 위치를 계산하여 화면 중앙에 배치합니다.
+  canvas.position((windowWidth - minCanvas) / 2, (windowHeight - minCanvas) / 2);
 
   // 레이어 생성
   mainLayer = createGraphics(minCanvas, minCanvas);
