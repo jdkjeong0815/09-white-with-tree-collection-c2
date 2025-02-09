@@ -81,7 +81,7 @@ function setup() {
   drawFrame();
   
   // 주기적인 자동 갱신
-  setInterval(refreshSketch, 60000);  // 240000
+  setInterval(refreshSketch, 240000);  // 24초 (240000)
 }
 //================================================
 
