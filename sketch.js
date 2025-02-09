@@ -44,6 +44,15 @@ let newHeight;
 let topColor1, topColor2;
 let bottomColor1, bottomColor2;
 
+function touchStarted() {
+  // 첫 번째 터치: 풀스크린 활성화
+  let fs = fullscreen();
+  fullscreen(!fs);
+  
+  setTimeout(refreshSketch, 2000);  // 애니메이션 효과를 위해 120초로 변경
+  // return false; // 기본 터치 동작 방지
+}
+
 function preload() {
   // 나무 이미지를 로드합니다.
   img = loadImage("assets/dead-tree-silhouette-36.png");
@@ -101,23 +110,31 @@ function initializeRandomElements() {
 
 function drawGradientBackground() {
 
-  // 회색
-  // topColor1 = color(random(250, 255)); // Start gradient for top 200 255
-  // topColor2 = color(random(200, 220)); // End gradient for top
-  // 노랑, 주황 계열
-  topColor1 = color(250, random(255), 0); // Start gradient for top 200 255
-  topColor2 = color(255, random(200), 0); // End gradient for top  (200,random(200),0)
-  // 청, 남색 계열
-  // topColor1 = color(0,random(255),255); // Start gradient for top 200 255
-  // topColor2 = color(0,random(200),200); // End gradient for top
-  
-  // bottom 면
-  // bottomColor1 = color(random(230, 240)); // Start gradient for bottom
-  // bottomColor2 = color(random(120, 180)); // End gradient for bottom
-  
-  // 청, 남색 계열 - 단색 
-  // topColor1 = color(0,random(15,125),255); // Start gradient for top 200 255
-  // topColor2 = color(0,0,255); // topColor1
+  // 1) top 면
+  let paletteChoice = random(1);
+  if (paletteChoice < 0.1) {  // 0 ~ 0.1
+    // 회색
+    topColor1 = color(random(250, 255)); // Start gradient for top
+    topColor2 = color(random(200, 220)); // End gradient for top
+  } else if (paletteChoice < 0.4) {  // 0.1 ~ 0.4
+    // 노랑, 주황 계열
+    topColor1 = color(250, random(255), 0); 
+    topColor2 = color(255, random(200), 0); 
+  } else if (paletteChoice < 0.6) {  // 0.4 ~ 0.6
+    // 청, 남색 계열
+    topColor1 = color(0, random(255), 255); // Start gradient
+    topColor2 = color(0, random(200), 200); // End gradient for top
+  } else if (paletteChoice < 0.8) {  // 0.6 ~ 0.8
+    // 청, 남색 계열 - 단색 
+    topColor1 = color(0, random(15, 125), 255); // Start gradient
+    topColor2 = color(0, 0, 255); // End gradient for top
+  } else {  // 0.8 ~ 1
+    // 짙은 보라 계열
+    topColor1 = color(random(125, 195), random(70, 102), random(172, 255)); 
+    topColor2 = color(random(100, 155), 0, random(166, 255));
+  }
+
+  // 2) bottom 면
   bottomColor1 = color(255); // Start gradient for bottom
   bottomColor2 = color(random(200, 220)); // End gradient for bottom (160, 170)
 
