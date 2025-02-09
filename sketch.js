@@ -80,7 +80,7 @@ function setup() {
   drawGradientMoon();
   drawFrame();
   
-  // 초마다 자동 갱신
+  // 주기적인 자동 갱신
   setInterval(refreshSketch, 60000);  // 240000
 }
 //================================================
@@ -171,7 +171,16 @@ function drawGradientBackground() {
   newHeight = (height - 2 * (dep + innerDep)) * 2 / 5;
   newWidth = img.width * (newHeight / img.height);
   // 이미지를 메인 레이어에 그립니다.
-  mainLayer.image(img, width*(6/10), height*(2.8/10), newWidth, newHeight+60);
+  // mainLayer.image(img, width*(6/10), height*(2.8/10), newWidth, newHeight+60);
+
+  // 나무 이미지를 약 2도(시계 반대방향) 회전하여 그리기
+  mainLayer.push();
+  // 회전 중심을 이미지의 중심으로 이동
+  mainLayer.translate(width * (6 / 10) + newWidth / 2, height * (2.8 / 10) + (newHeight + 60) / 2);
+  mainLayer.rotate(radians(-3)); // -2도 회전 (시계 반대방향)
+  // 회전 좌표 기준으로 이미지를 그리려면 좌측 상단 좌표를 음수 절반값으로 조정
+  mainLayer.image(img, -newWidth / 2, - (newHeight + 60) / 2, newWidth, newHeight + 60);
+  mainLayer.pop();
   
 
   // 3) Create bottom region gradient
